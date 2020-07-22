@@ -20,6 +20,10 @@ s3Obj.configureBucket = (bucket) => {
     params["Bucket"] = bucket;
 };
 
+s3Obj.getBucket = () => {
+    return params["Bucket"];
+};
+
 s3Obj.getAllObjects = () => {
     return objectPromise = baseAPI.listObjects(params).promise();
 };
