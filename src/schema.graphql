@@ -1,0 +1,13 @@
+type Customer {
+    CustomerId: ID!,
+    FirstName: String!,
+    LastName: String!
+}
+
+type Mutation {
+    hi: String
+}
+
+type Query {
+    hi: String
+}
