@@ -1,0 +1,26 @@
+type Customer @db(name: "Customers") {
+  CustomerId: Int! @id(strategy: SEQUENCE) @sequence(name: "Customers_customerid_seq", initialValue: 1, allocationSize: 1)
+  firstName: String @db(name: "FirstName")
+  lastName: String @db(name: "LastName")
+  testimonials: [Testimonial]
+}
+
+type Gallery @db(name: "Galleries") {
+  GalleryId: Int! @id(strategy: SEQUENCE) @sequence(name: "Galleries_galleryid_seq", initialValue: 1, allocationSize: 1)
+  galleryNumItems: Int @db(name: "GalleryNumItems")
+  galleryPath: String @db(name: "GalleryPath")
+  galleryType: String @db(name: "GalleryType")
+  ranks: [Rank]
+}
+
+type Rank @db(name: "Ranks") {
+  RankId: Int! @id(strategy: SEQUENCE) @sequence(name: "Ranks_rankid_seq", initialValue: 1, allocationSize: 1)
+  galleryId: Gallery! @db(name: "GalleryId")
+}
+
+type Testimonial @db(name: "Testimonials") {
+  TestimonialId: Int! @id(strategy: SEQUENCE) @sequence(name: "Testimonials_testimonialid_seq", initialValue: 1, allocationSize: 1)
+  body: String @db(name: "Body")
+  customerId: Customer! @db(name: "CustomerId")
+  headline: String @db(name: "Headline")
+}
