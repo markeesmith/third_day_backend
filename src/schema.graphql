@@ -2,8 +2,14 @@
 
 type Mutation {
     createCustomer(firstName: String, lastName: String): Customer!
+    createTestimonial(body: String, headline: String, customerId: Int): Testimonial!
+    createRank(galleryId: Int): Rank!
+    createGallery(galleryNumItems: Int, GalleryPath: String, GalleryType: String): Gallery!
 }
 
 type Query {
     customers: [Customer]!
+    testimonials: [Testimonial]!
+    ranks: [Rank]!
+    galleries: [Gallery]!
 }

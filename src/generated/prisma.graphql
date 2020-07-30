@@ -19,10 +19,10 @@ type BatchPayload {
 }
 
 type Customer {
-  CustomerId: Int!
-  firstName: String
-  lastName: String
-  testimonials(where: TestimonialWhereInput, orderBy: TestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Testimonial!]
+  customer_id: Int!
+  firstName: String!
+  lastName: String!
+  testimonial(where: TestimonialWhereInput, orderBy: TestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Testimonial!]
 }
 
 type CustomerConnection {
@@ -32,19 +32,19 @@ type CustomerConnection {
 }
 
 input CustomerCreateInput {
-  firstName: String
-  lastName: String
-  testimonials: TestimonialCreateManyWithoutCustomerIdInput
+  firstName: String!
+  lastName: String!
+  testimonial: TestimonialCreateManyWithoutCustomerInput
 }
 
-input CustomerCreateOneWithoutTestimonialsInput {
-  create: CustomerCreateWithoutTestimonialsInput
+input CustomerCreateOneWithoutTestimonialInput {
+  create: CustomerCreateWithoutTestimonialInput
   connect: CustomerWhereUniqueInput
 }
 
-input CustomerCreateWithoutTestimonialsInput {
-  firstName: String
-  lastName: String
+input CustomerCreateWithoutTestimonialInput {
+  firstName: String!
+  lastName: String!
 }
 
 type CustomerEdge {
@@ -53,8 +53,8 @@ type CustomerEdge {
 }
 
 enum CustomerOrderByInput {
-  CustomerId_ASC
-  CustomerId_DESC
+  customer_id_ASC
+  customer_id_DESC
   firstName_ASC
   firstName_DESC
   lastName_ASC
@@ -62,9 +62,9 @@ enum CustomerOrderByInput {
 }
 
 type CustomerPreviousValues {
-  CustomerId: Int!
-  firstName: String
-  lastName: String
+  customer_id: Int!
+  firstName: String!
+  lastName: String!
 }
 
 type CustomerSubscriptionPayload {
@@ -88,7 +88,7 @@ input CustomerSubscriptionWhereInput {
 input CustomerUpdateInput {
   firstName: String
   lastName: String
-  testimonials: TestimonialUpdateManyWithoutCustomerIdInput
+  testimonial: TestimonialUpdateManyWithoutCustomerInput
 }
 
 input CustomerUpdateManyMutationInput {
@@ -96,32 +96,32 @@ input CustomerUpdateManyMutationInput {
   lastName: String
 }
 
-input CustomerUpdateOneRequiredWithoutTestimonialsInput {
-  create: CustomerCreateWithoutTestimonialsInput
-  update: CustomerUpdateWithoutTestimonialsDataInput
-  upsert: CustomerUpsertWithoutTestimonialsInput
+input CustomerUpdateOneRequiredWithoutTestimonialInput {
+  create: CustomerCreateWithoutTestimonialInput
+  update: CustomerUpdateWithoutTestimonialDataInput
+  upsert: CustomerUpsertWithoutTestimonialInput
   connect: CustomerWhereUniqueInput
 }
 
-input CustomerUpdateWithoutTestimonialsDataInput {
+input CustomerUpdateWithoutTestimonialDataInput {
   firstName: String
   lastName: String
 }
 
-input CustomerUpsertWithoutTestimonialsInput {
-  update: CustomerUpdateWithoutTestimonialsDataInput!
-  create: CustomerCreateWithoutTestimonialsInput!
+input CustomerUpsertWithoutTestimonialInput {
+  update: CustomerUpdateWithoutTestimonialDataInput!
+  create: CustomerCreateWithoutTestimonialInput!
 }
 
 input CustomerWhereInput {
-  CustomerId: Int
-  CustomerId_not: Int
-  CustomerId_in: [Int!]
-  CustomerId_not_in: [Int!]
-  CustomerId_lt: Int
-  CustomerId_lte: Int
-  CustomerId_gt: Int
-  CustomerId_gte: Int
+  customer_id: Int
+  customer_id_not: Int
+  customer_id_in: [Int!]
+  customer_id_not_in: [Int!]
+  customer_id_lt: Int
+  customer_id_lte: Int
+  customer_id_gt: Int
+  customer_id_gte: Int
   firstName: String
   firstName_not: String
   firstName_in: [String!]
@@ -150,24 +150,24 @@ input CustomerWhereInput {
   lastName_not_starts_with: String
   lastName_ends_with: String
   lastName_not_ends_with: String
-  testimonials_every: TestimonialWhereInput
-  testimonials_some: TestimonialWhereInput
-  testimonials_none: TestimonialWhereInput
+  testimonial_every: TestimonialWhereInput
+  testimonial_some: TestimonialWhereInput
+  testimonial_none: TestimonialWhereInput
   AND: [CustomerWhereInput!]
   OR: [CustomerWhereInput!]
   NOT: [CustomerWhereInput!]
 }
 
 input CustomerWhereUniqueInput {
-  CustomerId: Int
+  customer_id: Int
 }
 
 type Gallery {
-  GalleryId: Int!
-  galleryNumItems: Int
-  galleryPath: String
-  galleryType: String
-  ranks(where: RankWhereInput, orderBy: RankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Rank!]
+  gallery_id: Int!
+  galNumberItems: Int!
+  galPath: String!
+  galType: String!
+  rank(where: RankWhereInput, orderBy: RankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Rank!]
 }
 
 type GalleryConnection {
@@ -177,21 +177,21 @@ type GalleryConnection {
 }
 
 input GalleryCreateInput {
-  galleryNumItems: Int
-  galleryPath: String
-  galleryType: String
-  ranks: RankCreateManyWithoutGalleryIdInput
+  galNumberItems: Int!
+  galPath: String!
+  galType: String!
+  rank: RankCreateManyWithoutGalleryInput
 }
 
-input GalleryCreateOneWithoutRanksInput {
-  create: GalleryCreateWithoutRanksInput
+input GalleryCreateOneWithoutRankInput {
+  create: GalleryCreateWithoutRankInput
   connect: GalleryWhereUniqueInput
 }
 
-input GalleryCreateWithoutRanksInput {
-  galleryNumItems: Int
-  galleryPath: String
-  galleryType: String
+input GalleryCreateWithoutRankInput {
+  galNumberItems: Int!
+  galPath: String!
+  galType: String!
 }
 
 type GalleryEdge {
@@ -200,21 +200,21 @@ type GalleryEdge {
 }
 
 enum GalleryOrderByInput {
-  GalleryId_ASC
-  GalleryId_DESC
-  galleryNumItems_ASC
-  galleryNumItems_DESC
-  galleryPath_ASC
-  galleryPath_DESC
-  galleryType_ASC
-  galleryType_DESC
+  gallery_id_ASC
+  gallery_id_DESC
+  galNumberItems_ASC
+  galNumberItems_DESC
+  galPath_ASC
+  galPath_DESC
+  galType_ASC
+  galType_DESC
 }
 
 type GalleryPreviousValues {
-  GalleryId: Int!
-  galleryNumItems: Int
-  galleryPath: String
-  galleryType: String
+  gallery_id: Int!
+  galNumberItems: Int!
+  galPath: String!
+  galType: String!
 }
 
 type GallerySubscriptionPayload {
@@ -236,91 +236,91 @@ input GallerySubscriptionWhereInput {
 }
 
 input GalleryUpdateInput {
-  galleryNumItems: Int
-  galleryPath: String
-  galleryType: String
-  ranks: RankUpdateManyWithoutGalleryIdInput
+  galNumberItems: Int
+  galPath: String
+  galType: String
+  rank: RankUpdateManyWithoutGalleryInput
 }
 
 input GalleryUpdateManyMutationInput {
-  galleryNumItems: Int
-  galleryPath: String
-  galleryType: String
+  galNumberItems: Int
+  galPath: String
+  galType: String
 }
 
-input GalleryUpdateOneRequiredWithoutRanksInput {
-  create: GalleryCreateWithoutRanksInput
-  update: GalleryUpdateWithoutRanksDataInput
-  upsert: GalleryUpsertWithoutRanksInput
+input GalleryUpdateOneRequiredWithoutRankInput {
+  create: GalleryCreateWithoutRankInput
+  update: GalleryUpdateWithoutRankDataInput
+  upsert: GalleryUpsertWithoutRankInput
   connect: GalleryWhereUniqueInput
 }
 
-input GalleryUpdateWithoutRanksDataInput {
-  galleryNumItems: Int
-  galleryPath: String
-  galleryType: String
+input GalleryUpdateWithoutRankDataInput {
+  galNumberItems: Int
+  galPath: String
+  galType: String
 }
 
-input GalleryUpsertWithoutRanksInput {
-  update: GalleryUpdateWithoutRanksDataInput!
-  create: GalleryCreateWithoutRanksInput!
+input GalleryUpsertWithoutRankInput {
+  update: GalleryUpdateWithoutRankDataInput!
+  create: GalleryCreateWithoutRankInput!
 }
 
 input GalleryWhereInput {
-  GalleryId: Int
-  GalleryId_not: Int
-  GalleryId_in: [Int!]
-  GalleryId_not_in: [Int!]
-  GalleryId_lt: Int
-  GalleryId_lte: Int
-  GalleryId_gt: Int
-  GalleryId_gte: Int
-  galleryNumItems: Int
-  galleryNumItems_not: Int
-  galleryNumItems_in: [Int!]
-  galleryNumItems_not_in: [Int!]
-  galleryNumItems_lt: Int
-  galleryNumItems_lte: Int
-  galleryNumItems_gt: Int
-  galleryNumItems_gte: Int
-  galleryPath: String
-  galleryPath_not: String
-  galleryPath_in: [String!]
-  galleryPath_not_in: [String!]
-  galleryPath_lt: String
-  galleryPath_lte: String
-  galleryPath_gt: String
-  galleryPath_gte: String
-  galleryPath_contains: String
-  galleryPath_not_contains: String
-  galleryPath_starts_with: String
-  galleryPath_not_starts_with: String
-  galleryPath_ends_with: String
-  galleryPath_not_ends_with: String
-  galleryType: String
-  galleryType_not: String
-  galleryType_in: [String!]
-  galleryType_not_in: [String!]
-  galleryType_lt: String
-  galleryType_lte: String
-  galleryType_gt: String
-  galleryType_gte: String
-  galleryType_contains: String
-  galleryType_not_contains: String
-  galleryType_starts_with: String
-  galleryType_not_starts_with: String
-  galleryType_ends_with: String
-  galleryType_not_ends_with: String
-  ranks_every: RankWhereInput
-  ranks_some: RankWhereInput
-  ranks_none: RankWhereInput
+  gallery_id: Int
+  gallery_id_not: Int
+  gallery_id_in: [Int!]
+  gallery_id_not_in: [Int!]
+  gallery_id_lt: Int
+  gallery_id_lte: Int
+  gallery_id_gt: Int
+  gallery_id_gte: Int
+  galNumberItems: Int
+  galNumberItems_not: Int
+  galNumberItems_in: [Int!]
+  galNumberItems_not_in: [Int!]
+  galNumberItems_lt: Int
+  galNumberItems_lte: Int
+  galNumberItems_gt: Int
+  galNumberItems_gte: Int
+  galPath: String
+  galPath_not: String
+  galPath_in: [String!]
+  galPath_not_in: [String!]
+  galPath_lt: String
+  galPath_lte: String
+  galPath_gt: String
+  galPath_gte: String
+  galPath_contains: String
+  galPath_not_contains: String
+  galPath_starts_with: String
+  galPath_not_starts_with: String
+  galPath_ends_with: String
+  galPath_not_ends_with: String
+  galType: String
+  galType_not: String
+  galType_in: [String!]
+  galType_not_in: [String!]
+  galType_lt: String
+  galType_lte: String
+  galType_gt: String
+  galType_gte: String
+  galType_contains: String
+  galType_not_contains: String
+  galType_starts_with: String
+  galType_not_starts_with: String
+  galType_ends_with: String
+  galType_not_ends_with: String
+  rank_every: RankWhereInput
+  rank_some: RankWhereInput
+  rank_none: RankWhereInput
   AND: [GalleryWhereInput!]
   OR: [GalleryWhereInput!]
   NOT: [GalleryWhereInput!]
 }
 
 input GalleryWhereUniqueInput {
-  GalleryId: Int
+  gallery_id: Int
 }
 
 scalar Long
@@ -340,6 +340,7 @@ type Mutation {
   deleteManyGalleries(where: GalleryWhereInput): BatchPayload!
   createRank(data: RankCreateInput!): Rank!
   updateRank(data: RankUpdateInput!, where: RankWhereUniqueInput!): Rank
+  updateManyRanks(data: RankUpdateManyMutationInput!, where: RankWhereInput): BatchPayload!
   upsertRank(where: RankWhereUniqueInput!, create: RankCreateInput!, update: RankUpdateInput!): Rank!
   deleteRank(where: RankWhereUniqueInput!): Rank
   deleteManyRanks(where: RankWhereInput): BatchPayload!
@@ -385,8 +386,9 @@ type Query {
 }
 
 type Rank {
-  RankId: Int!
-  galleryId: Gallery!
+  rank_id: Int!
+  gallery: Gallery!
+  rankPosition: Int!
 }
 
 type RankConnection {
@@ -396,11 +398,17 @@ type RankConnection {
 }
 
 input RankCreateInput {
-  galleryId: GalleryCreateOneWithoutRanksInput!
+  gallery: GalleryCreateOneWithoutRankInput!
+  rankPosition: Int!
 }
 
-input RankCreateManyWithoutGalleryIdInput {
+input RankCreateManyWithoutGalleryInput {
+  create: [RankCreateWithoutGalleryInput!]
   connect: [RankWhereUniqueInput!]
+}
+
+input RankCreateWithoutGalleryInput {
+  rankPosition: Int!
 }
 
 type RankEdge {
@@ -409,23 +417,34 @@ type RankEdge {
 }
 
 enum RankOrderByInput {
-  RankId_ASC
-  RankId_DESC
+  rank_id_ASC
+  rank_id_DESC
+  rankPosition_ASC
+  rankPosition_DESC
 }
 
 type RankPreviousValues {
-  RankId: Int!
+  rank_id: Int!
+  rankPosition: Int!
 }
 
 input RankScalarWhereInput {
-  RankId: Int
-  RankId_not: Int
-  RankId_in: [Int!]
-  RankId_not_in: [Int!]
-  RankId_lt: Int
-  RankId_lte: Int
-  RankId_gt: Int
-  RankId_gte: Int
+  rank_id: Int
+  rank_id_not: Int
+  rank_id_in: [Int!]
+  rank_id_not_in: [Int!]
+  rank_id_lt: Int
+  rank_id_lte: Int
+  rank_id_gt: Int
+  rank_id_gte: Int
+  rankPosition: Int
+  rankPosition_not: Int
+  rankPosition_in: [Int!]
+  rankPosition_not_in: [Int!]
+  rankPosition_lt: Int
+  rankPosition_lte: Int
+  rankPosition_gt: Int
+  rankPosition_gte: Int
   AND: [RankScalarWhereInput!]
   OR: [RankScalarWhereInput!]
   NOT: [RankScalarWhereInput!]
@@ -450,34 +469,75 @@ input RankSubscriptionWhereInput {
 }
 
 input RankUpdateInput {
-  galleryId: GalleryUpdateOneRequiredWithoutRanksInput
+  gallery: GalleryUpdateOneRequiredWithoutRankInput
+  rankPosition: Int
 }
 
-input RankUpdateManyWithoutGalleryIdInput {
+input RankUpdateManyDataInput {
+  rankPosition: Int
+}
+
+input RankUpdateManyMutationInput {
+  rankPosition: Int
+}
+
+input RankUpdateManyWithoutGalleryInput {
+  create: [RankCreateWithoutGalleryInput!]
   delete: [RankWhereUniqueInput!]
   connect: [RankWhereUniqueInput!]
   set: [RankWhereUniqueInput!]
   disconnect: [RankWhereUniqueInput!]
+  update: [RankUpdateWithWhereUniqueWithoutGalleryInput!]
+  upsert: [RankUpsertWithWhereUniqueWithoutGalleryInput!]
   deleteMany: [RankScalarWhereInput!]
+  updateMany: [RankUpdateManyWithWhereNestedInput!]
+}
+
+input RankUpdateManyWithWhereNestedInput {
+  where: RankScalarWhereInput!
+  data: RankUpdateManyDataInput!
+}
+
+input RankUpdateWithoutGalleryDataInput {
+  rankPosition: Int
+}
+
+input RankUpdateWithWhereUniqueWithoutGalleryInput {
+  where: RankWhereUniqueInput!
+  data: RankUpdateWithoutGalleryDataInput!
+}
+
+input RankUpsertWithWhereUniqueWithoutGalleryInput {
+  where: RankWhereUniqueInput!
+  update: RankUpdateWithoutGalleryDataInput!
+  create: RankCreateWithoutGalleryInput!
 }
 
 input RankWhereInput {
-  RankId: Int
-  RankId_not: Int
-  RankId_in: [Int!]
-  RankId_not_in: [Int!]
-  RankId_lt: Int
-  RankId_lte: Int
-  RankId_gt: Int
-  RankId_gte: Int
-  galleryId: GalleryWhereInput
+  rank_id: Int
+  rank_id_not: Int
+  rank_id_in: [Int!]
+  rank_id_not_in: [Int!]
+  rank_id_lt: Int
+  rank_id_lte: Int
+  rank_id_gt: Int
+  rank_id_gte: Int
+  gallery: GalleryWhereInput
+  rankPosition: Int
+  rankPosition_not: Int
+  rankPosition_in: [Int!]
+  rankPosition_not_in: [Int!]
+  rankPosition_lt: Int
+  rankPosition_lte: Int
+  rankPosition_gt: Int
+  rankPosition_gte: Int
   AND: [RankWhereInput!]
   OR: [RankWhereInput!]
   NOT: [RankWhereInput!]
 }
 
 input RankWhereUniqueInput {
-  RankId: Int
+  rank_id: Int
 }
 
 type Subscription {
@@ -488,9 +548,9 @@ type Subscription {
 }
 
 type Testimonial {
-  TestimonialId: Int!
-  body: String
-  customerId: Customer!
+  testimonial_id: Int!
+  body: String!
+  customer: Customer!
   headline: String
 }
 
@@ -501,18 +561,18 @@ type TestimonialConnection {
 }
 
 input TestimonialCreateInput {
-  body: String
-  customerId: CustomerCreateOneWithoutTestimonialsInput!
+  body: String!
+  customer: CustomerCreateOneWithoutTestimonialInput!
   headline: String
 }
 
-input TestimonialCreateManyWithoutCustomerIdInput {
-  create: [TestimonialCreateWithoutCustomerIdInput!]
+input TestimonialCreateManyWithoutCustomerInput {
+  create: [TestimonialCreateWithoutCustomerInput!]
   connect: [TestimonialWhereUniqueInput!]
 }
 
-input TestimonialCreateWithoutCustomerIdInput {
-  body: String
+input TestimonialCreateWithoutCustomerInput {
+  body: String!
   headline: String
 }
 
@@ -522,8 +582,8 @@ type TestimonialEdge {
 }
 
 enum TestimonialOrderByInput {
-  TestimonialId_ASC
-  TestimonialId_DESC
+  testimonial_id_ASC
+  testimonial_id_DESC
   body_ASC
   body_DESC
   headline_ASC
@@ -531,20 +591,20 @@ enum TestimonialOrderByInput {
 }
 
 type TestimonialPreviousValues {
-  TestimonialId: Int!
-  body: String
+  testimonial_id: Int!
+  body: String!
   headline: String
 }
 
 input TestimonialScalarWhereInput {
-  TestimonialId: Int
-  TestimonialId_not: Int
-  TestimonialId_in: [Int!]
-  TestimonialId_not_in: [Int!]
-  TestimonialId_lt: Int
-  TestimonialId_lte: Int
-  TestimonialId_gt: Int
-  TestimonialId_gte: Int
+  testimonial_id: Int
+  testimonial_id_not: Int
+  testimonial_id_in: [Int!]
+  testimonial_id_not_in: [Int!]
+  testimonial_id_lt: Int
+  testimonial_id_lte: Int
+  testimonial_id_gt: Int
+  testimonial_id_gte: Int
   body: String
   body_not: String
   body_in: [String!]
@@ -598,7 +658,7 @@ input TestimonialSubscriptionWhereInput {
 
 input TestimonialUpdateInput {
   body: String
-  customerId: CustomerUpdateOneRequiredWithoutTestimonialsInput
+  customer: CustomerUpdateOneRequiredWithoutTestimonialInput
   headline: String
 }
 
@@ -612,14 +672,14 @@ input TestimonialUpdateManyMutationInput {
   headline: String
 }
 
-input TestimonialUpdateManyWithoutCustomerIdInput {
-  create: [TestimonialCreateWithoutCustomerIdInput!]
+input TestimonialUpdateManyWithoutCustomerInput {
+  create: [TestimonialCreateWithoutCustomerInput!]
   delete: [TestimonialWhereUniqueInput!]
   connect: [TestimonialWhereUniqueInput!]
   set: [TestimonialWhereUniqueInput!]
   disconnect: [TestimonialWhereUniqueInput!]
-  update: [TestimonialUpdateWithWhereUniqueWithoutCustomerIdInput!]
-  upsert: [TestimonialUpsertWithWhereUniqueWithoutCustomerIdInput!]
+  update: [TestimonialUpdateWithWhereUniqueWithoutCustomerInput!]
+  upsert: [TestimonialUpsertWithWhereUniqueWithoutCustomerInput!]
   deleteMany: [TestimonialScalarWhereInput!]
   updateMany: [TestimonialUpdateManyWithWhereNestedInput!]
 }
@@ -629,31 +689,31 @@ input TestimonialUpdateManyWithWhereNestedInput {
   data: TestimonialUpdateManyDataInput!
 }
 
-input TestimonialUpdateWithoutCustomerIdDataInput {
+input TestimonialUpdateWithoutCustomerDataInput {
   body: String
   headline: String
 }
 
-input TestimonialUpdateWithWhereUniqueWithoutCustomerIdInput {
+input TestimonialUpdateWithWhereUniqueWithoutCustomerInput {
   where: TestimonialWhereUniqueInput!
-  data: TestimonialUpdateWithoutCustomerIdDataInput!
+  data: TestimonialUpdateWithoutCustomerDataInput!
 }
 
-input TestimonialUpsertWithWhereUniqueWithoutCustomerIdInput {
+input TestimonialUpsertWithWhereUniqueWithoutCustomerInput {
   where: TestimonialWhereUniqueInput!
-  update: TestimonialUpdateWithoutCustomerIdDataInput!
-  create: TestimonialCreateWithoutCustomerIdInput!
+  update: TestimonialUpdateWithoutCustomerDataInput!
+  create: TestimonialCreateWithoutCustomerInput!
 }
 
 input TestimonialWhereInput {
-  TestimonialId: Int
-  TestimonialId_not: Int
-  TestimonialId_in: [Int!]
-  TestimonialId_not_in: [Int!]
-  TestimonialId_lt: Int
-  TestimonialId_lte: Int
-  TestimonialId_gt: Int
-  TestimonialId_gte: Int
+  testimonial_id: Int
+  testimonial_id_not: Int
+  testimonial_id_in: [Int!]
+  testimonial_id_not_in: [Int!]
+  testimonial_id_lt: Int
+  testimonial_id_lte: Int
+  testimonial_id_gt: Int
+  testimonial_id_gte: Int
   body: String
   body_not: String
   body_in: [String!]
@@ -668,7 +728,7 @@ input TestimonialWhereInput {
   body_not_starts_with: String
   body_ends_with: String
   body_not_ends_with: String
-  customerId: CustomerWhereInput
+  customer: CustomerWhereInput
   headline: String
   headline_not: String
   headline_in: [String!]
@@ -689,5 +749,5 @@ input TestimonialWhereInput {
 }
 
 input TestimonialWhereUniqueInput {
-  TestimonialId: Int
+  testimonial_id: Int
 }
