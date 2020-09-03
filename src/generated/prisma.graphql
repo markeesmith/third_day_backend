@@ -183,6 +183,11 @@ input GalleryCreateInput {
   rank: RankCreateManyWithoutGalleryInput
 }
 
+input GalleryCreateOneInput {
+  create: GalleryCreateInput
+  connect: GalleryWhereUniqueInput
+}
+
 input GalleryCreateOneWithoutRankInput {
   create: GalleryCreateWithoutRankInput
   connect: GalleryWhereUniqueInput
@@ -235,6 +240,13 @@ input GallerySubscriptionWhereInput {
   NOT: [GallerySubscriptionWhereInput!]
 }
 
+input GalleryUpdateDataInput {
+  galNumberItems: Int
+  galPath: String
+  galType: String
+  rank: RankUpdateManyWithoutGalleryInput
+}
+
 input GalleryUpdateInput {
   galNumberItems: Int
   galPath: String
@@ -248,6 +260,13 @@ input GalleryUpdateManyMutationInput {
   galType: String
 }
 
+input GalleryUpdateOneRequiredInput {
+  create: GalleryCreateInput
+  update: GalleryUpdateDataInput
+  upsert: GalleryUpsertNestedInput
+  connect: GalleryWhereUniqueInput
+}
+
 input GalleryUpdateOneRequiredWithoutRankInput {
   create: GalleryCreateWithoutRankInput
   update: GalleryUpdateWithoutRankDataInput
@@ -259,6 +278,11 @@ input GalleryUpdateWithoutRankDataInput {
   galNumberItems: Int
   galPath: String
   galType: String
+}
+
+input GalleryUpsertNestedInput {
+  update: GalleryUpdateDataInput!
+  create: GalleryCreateInput!
 }
 
 input GalleryUpsertWithoutRankInput {
@@ -552,6 +576,7 @@ type Testimonial {
   body: String!
   customer: Customer!
   headline: String
+  gallery: Gallery!
 }
 
 type TestimonialConnection {
@@ -564,6 +589,7 @@ input TestimonialCreateInput {
   body: String!
   customer: CustomerCreateOneWithoutTestimonialInput!
   headline: String
+  gallery: GalleryCreateOneInput!
 }
 
 input TestimonialCreateManyWithoutCustomerInput {
@@ -574,6 +600,7 @@ input TestimonialCreateManyWithoutCustomerInput {
 input TestimonialCreateWithoutCustomerInput {
   body: String!
   headline: String
+  gallery: GalleryCreateOneInput!
 }
 
 type TestimonialEdge {
@@ -660,6 +687,7 @@ input TestimonialUpdateInput {
   body: String
   customer: CustomerUpdateOneRequiredWithoutTestimonialInput
   headline: String
+  gallery: GalleryUpdateOneRequiredInput
 }
 
 input TestimonialUpdateManyDataInput {
@@ -692,6 +720,7 @@ input TestimonialUpdateManyWithWhereNestedInput {
 input TestimonialUpdateWithoutCustomerDataInput {
   body: String
   headline: String
+  gallery: GalleryUpdateOneRequiredInput
 }
 
 input TestimonialUpdateWithWhereUniqueWithoutCustomerInput {
@@ -743,6 +772,7 @@ input TestimonialWhereInput {
   headline_not_starts_with: String
   headline_ends_with: String
   headline_not_ends_with: String
+  gallery: GalleryWhereInput
   AND: [TestimonialWhereInput!]
   OR: [TestimonialWhereInput!]
   NOT: [TestimonialWhereInput!]

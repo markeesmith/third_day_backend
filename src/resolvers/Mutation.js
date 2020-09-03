@@ -34,6 +34,13 @@ const Mutation = {
          }, info);
 
          return gallery;
+     },
+     async updateTestimonial(parent, args, ctx, info) {
+       const testimonial = await ctx.db.mutation.updateTestimonial({
+         data: {
+           ...args
+         }
+       }, info);
      }
 };
 

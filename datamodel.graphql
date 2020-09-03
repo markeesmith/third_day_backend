@@ -24,4 +24,5 @@ type Testimonial @db(name: "testimonial") {
   body: String!
   customer: Customer! @db(name: "customer_id")
   headline: String
+  gallery: Gallery! @db(name: "gallery_id")
 }
