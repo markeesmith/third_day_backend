@@ -5,6 +5,7 @@ type Mutation {
     createTestimonial(body: String, headline: String, customerId: Int): Testimonial!
     createRank(galleryId: Int): Rank!
     createGallery(galleryNumItems: Int, GalleryPath: String, GalleryType: String): Gallery!
+    updateTestimonial(gallery: [Gallery], testimonial_id: Int!): Testimonial!
 }
 
 type Query {
