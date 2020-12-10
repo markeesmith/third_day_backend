@@ -1,15 +1,17 @@
 # import * from './generated/prisma.graphql'
 
 type Mutation {
-    createCustomer(firstName: String, lastName: String): Customer!
+    createCustomer(firstName: String, lastName: String, email: String, phone: String, budget: String, description: String): Customer!
     createTestimonial(body: String, headline: String, customerId: Int): Testimonial!
     createRank(galleryId: Int): Rank!
     createGallery(galleryNumItems: Int, GalleryPath: String, GalleryType: String): Gallery!
-    updateTestimonial(gallery: [Gallery], testimonial_id: Int!): Testimonial!
+    #updateTestimonial(gallery: [Gallery], testimonial_id: Int!): Testimonial!
+    requestContact(firstName:String! , lastName:String!, email:String!, phone:String!, streetAddress:String!, city:String!, state:String!, zipCode:String!, chkCustom:Boolean!, chkRemodel:Boolean!, chkAddition:Boolean!, budget:String!, description:String!): Customer!
 }
 
 type Query {
     customers: [Customer]!
+    customer(where: CustomerWhereUniqueInput!): Customer
     testimonials: [Testimonial]!
     ranks: [Rank]!
     galleries: [Gallery]!

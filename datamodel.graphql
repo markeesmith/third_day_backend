@@ -2,6 +2,10 @@ type Customer @db(name: "customer") {
   customer_id: Int! @id(strategy: SEQUENCE) @sequence(name: "customer_customer_id_seq", initialValue: 1, allocationSize: 1)
   firstName: String! @db(name: "first_name")
   lastName: String! @db(name: "last_name")
+  email: String! @unique @db(name: "email")
+  phone: String! @db(name: "phone")
+  budget: String! @db(name: "budget")
+  description: String! @db(name: "description")
   testimonial: [Testimonial]
 }
 

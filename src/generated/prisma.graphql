@@ -22,6 +22,10 @@ type Customer {
   customer_id: Int!
   firstName: String!
   lastName: String!
+  email: String!
+  phone: String!
+  budget: String!
+  description: String!
   testimonial(where: TestimonialWhereInput, orderBy: TestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Testimonial!]
 }
 
@@ -34,6 +38,10 @@ type CustomerConnection {
 input CustomerCreateInput {
   firstName: String!
   lastName: String!
+  email: String!
+  phone: String!
+  budget: String!
+  description: String!
   testimonial: TestimonialCreateManyWithoutCustomerInput
 }
 
@@ -45,6 +53,10 @@ input CustomerCreateOneWithoutTestimonialInput {
 input CustomerCreateWithoutTestimonialInput {
   firstName: String!
   lastName: String!
+  email: String!
+  phone: String!
+  budget: String!
+  description: String!
 }
 
 type CustomerEdge {
@@ -59,12 +71,24 @@ enum CustomerOrderByInput {
   firstName_DESC
   lastName_ASC
   lastName_DESC
+  email_ASC
+  email_DESC
+  phone_ASC
+  phone_DESC
+  budget_ASC
+  budget_DESC
+  description_ASC
+  description_DESC
 }
 
 type CustomerPreviousValues {
   customer_id: Int!
   firstName: String!
   lastName: String!
+  email: String!
+  phone: String!
+  budget: String!
+  description: String!
 }
 
 type CustomerSubscriptionPayload {
@@ -88,12 +112,20 @@ input CustomerSubscriptionWhereInput {
 input CustomerUpdateInput {
   firstName: String
   lastName: String
+  email: String
+  phone: String
+  budget: String
+  description: String
   testimonial: TestimonialUpdateManyWithoutCustomerInput
 }
 
 input CustomerUpdateManyMutationInput {
   firstName: String
   lastName: String
+  email: String
+  phone: String
+  budget: String
+  description: String
 }
 
 input CustomerUpdateOneRequiredWithoutTestimonialInput {
@@ -106,6 +138,10 @@ input CustomerUpdateOneRequiredWithoutTestimonialInput {
 input CustomerUpdateWithoutTestimonialDataInput {
   firstName: String
   lastName: String
+  email: String
+  phone: String
+  budget: String
+  description: String
 }
 
 input CustomerUpsertWithoutTestimonialInput {
@@ -150,6 +186,62 @@ input CustomerWhereInput {
   lastName_not_starts_with: String
   lastName_ends_with: String
   lastName_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  budget: String
+  budget_not: String
+  budget_in: [String!]
+  budget_not_in: [String!]
+  budget_lt: String
+  budget_lte: String
+  budget_gt: String
+  budget_gte: String
+  budget_contains: String
+  budget_not_contains: String
+  budget_starts_with: String
+  budget_not_starts_with: String
+  budget_ends_with: String
+  budget_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
   testimonial_every: TestimonialWhereInput
   testimonial_some: TestimonialWhereInput
   testimonial_none: TestimonialWhereInput
@@ -160,6 +252,7 @@ input CustomerWhereInput {
 
 input CustomerWhereUniqueInput {
   customer_id: Int
+  email: String
 }
 
 type Gallery {
