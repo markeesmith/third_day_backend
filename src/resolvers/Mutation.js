@@ -42,13 +42,6 @@ const Mutation = {
 
          return gallery;
      },
-    //  async updateTestimonial(parent, args, ctx, info) {
-    //    const testimonial = await ctx.db.mutation.updateTestimonial({
-    //      data: {
-    //        ...args
-    //      }
-    //    }, info);
-    //  },
      async requestContact(parent, { firstName, lastName, email, phone, streetAddress, city, state, zipCode, chkCustom, chkRemodel, chkAddition, budget, description }, ctx, info) {
       const customer = await ctx.db.mutation.createCustomer({
         data: {
