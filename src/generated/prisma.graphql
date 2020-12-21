@@ -6,10 +6,6 @@ type AggregateGallery {
   count: Int!
 }
 
-type AggregateRank {
-  count: Int!
-}
-
 type AggregateTestimonial {
   count: Int!
 }
@@ -260,7 +256,7 @@ type Gallery {
   galNumberItems: Int!
   galPath: String!
   galType: String!
-  rank(where: RankWhereInput, orderBy: RankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Rank!]
+  galRank: Int!
 }
 
 type GalleryConnection {
@@ -273,23 +269,12 @@ input GalleryCreateInput {
   galNumberItems: Int!
   galPath: String!
   galType: String!
-  rank: RankCreateManyWithoutGalleryInput
+  galRank: Int!
 }
 
 input GalleryCreateOneInput {
   create: GalleryCreateInput
   connect: GalleryWhereUniqueInput
-}
-
-input GalleryCreateOneWithoutRankInput {
-  create: GalleryCreateWithoutRankInput
-  connect: GalleryWhereUniqueInput
-}
-
-input GalleryCreateWithoutRankInput {
-  galNumberItems: Int!
-  galPath: String!
-  galType: String!
 }
 
 type GalleryEdge {
@@ -306,6 +291,8 @@ enum GalleryOrderByInput {
   galPath_DESC
   galType_ASC
   galType_DESC
+  galRank_ASC
+  galRank_DESC
 }
 
 type GalleryPreviousValues {
@@ -313,6 +300,7 @@ type GalleryPreviousValues {
   galNumberItems: Int!
   galPath: String!
   galType: String!
+  galRank: Int!
 }
 
 type GallerySubscriptionPayload {
@@ -337,20 +325,21 @@ input GalleryUpdateDataInput {
   galNumberItems: Int
   galPath: String
   galType: String
-  rank: RankUpdateManyWithoutGalleryInput
+  galRank: Int
 }
 
 input GalleryUpdateInput {
   galNumberItems: Int
   galPath: String
   galType: String
-  rank: RankUpdateManyWithoutGalleryInput
+  galRank: Int
 }
 
 input GalleryUpdateManyMutationInput {
   galNumberItems: Int
   galPath: String
   galType: String
+  galRank: Int
 }
 
 input GalleryUpdateOneRequiredInput {
@@ -360,27 +349,9 @@ input GalleryUpdateOneRequiredInput {
   connect: GalleryWhereUniqueInput
 }
 
-input GalleryUpdateOneRequiredWithoutRankInput {
-  create: GalleryCreateWithoutRankInput
-  update: GalleryUpdateWithoutRankDataInput
-  upsert: GalleryUpsertWithoutRankInput
-  connect: GalleryWhereUniqueInput
-}
-
-input GalleryUpdateWithoutRankDataInput {
-  galNumberItems: Int
-  galPath: String
-  galType: String
-}
-
 input GalleryUpsertNestedInput {
   update: GalleryUpdateDataInput!
   create: GalleryCreateInput!
-}
-
-input GalleryUpsertWithoutRankInput {
-  update: GalleryUpdateWithoutRankDataInput!
-  create: GalleryCreateWithoutRankInput!
 }
 
 input GalleryWhereInput {
@@ -428,9 +399,14 @@ input GalleryWhereInput {
   galType_not_starts_with: String
   galType_ends_with: String
   galType_not_ends_with: String
-  rank_every: RankWhereInput
-  rank_some: RankWhereInput
-  rank_none: RankWhereInput
+  galRank: Int
+  galRank_not: Int
+  galRank_in: [Int!]
+  galRank_not_in: [Int!]
+  galRank_lt: Int
+  galRank_lte: Int
+  galRank_gt: Int
+  galRank_gte: Int
   AND: [GalleryWhereInput!]
   OR: [GalleryWhereInput!]
   NOT: [GalleryWhereInput!]
@@ -455,12 +431,6 @@ type Mutation {
   upsertGallery(where: GalleryWhereUniqueInput!, create: GalleryCreateInput!, update: GalleryUpdateInput!): Gallery!
   deleteGallery(where: GalleryWhereUniqueInput!): Gallery
   deleteManyGalleries(where: GalleryWhereInput): BatchPayload!
-  createRank(data: RankCreateInput!): Rank!
-  updateRank(data: RankUpdateInput!, where: RankWhereUniqueInput!): Rank
-  updateManyRanks(data: RankUpdateManyMutationInput!, where: RankWhereInput): BatchPayload!
-  upsertRank(where: RankWhereUniqueInput!, create: RankCreateInput!, update: RankUpdateInput!): Rank!
-  deleteRank(where: RankWhereUniqueInput!): Rank
-  deleteManyRanks(where: RankWhereInput): BatchPayload!
   createTestimonial(data: TestimonialCreateInput!): Testimonial!
   updateTestimonial(data: TestimonialUpdateInput!, where: TestimonialWhereUniqueInput!): Testimonial
   updateManyTestimonials(data: TestimonialUpdateManyMutationInput!, where: TestimonialWhereInput): BatchPayload!
@@ -493,174 +463,15 @@ type Query {
   gallery(where: GalleryWhereUniqueInput!): Gallery
   galleries(where: GalleryWhereInput, orderBy: GalleryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Gallery]!
   galleriesConnection(where: GalleryWhereInput, orderBy: GalleryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GalleryConnection!
-  rank(where: RankWhereUniqueInput!): Rank
-  ranks(where: RankWhereInput, orderBy: RankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Rank]!
-  ranksConnection(where: RankWhereInput, orderBy: RankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RankConnection!
   testimonial(where: TestimonialWhereUniqueInput!): Testimonial
   testimonials(where: TestimonialWhereInput, orderBy: TestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Testimonial]!
   testimonialsConnection(where: TestimonialWhereInput, orderBy: TestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TestimonialConnection!
   node(id: ID!): Node
 }
 
-type Rank {
-  rank_id: Int!
-  gallery: Gallery!
-  rankPosition: Int!
-}
-
-type RankConnection {
-  pageInfo: PageInfo!
-  edges: [RankEdge]!
-  aggregate: AggregateRank!
-}
-
-input RankCreateInput {
-  gallery: GalleryCreateOneWithoutRankInput!
-  rankPosition: Int!
-}
-
-input RankCreateManyWithoutGalleryInput {
-  create: [RankCreateWithoutGalleryInput!]
-  connect: [RankWhereUniqueInput!]
-}
-
-input RankCreateWithoutGalleryInput {
-  rankPosition: Int!
-}
-
-type RankEdge {
-  node: Rank!
-  cursor: String!
-}
-
-enum RankOrderByInput {
-  rank_id_ASC
-  rank_id_DESC
-  rankPosition_ASC
-  rankPosition_DESC
-}
-
-type RankPreviousValues {
-  rank_id: Int!
-  rankPosition: Int!
-}
-
-input RankScalarWhereInput {
-  rank_id: Int
-  rank_id_not: Int
-  rank_id_in: [Int!]
-  rank_id_not_in: [Int!]
-  rank_id_lt: Int
-  rank_id_lte: Int
-  rank_id_gt: Int
-  rank_id_gte: Int
-  rankPosition: Int
-  rankPosition_not: Int
-  rankPosition_in: [Int!]
-  rankPosition_not_in: [Int!]
-  rankPosition_lt: Int
-  rankPosition_lte: Int
-  rankPosition_gt: Int
-  rankPosition_gte: Int
-  AND: [RankScalarWhereInput!]
-  OR: [RankScalarWhereInput!]
-  NOT: [RankScalarWhereInput!]
-}
-
-type RankSubscriptionPayload {
-  mutation: MutationType!
-  node: Rank
-  updatedFields: [String!]
-  previousValues: RankPreviousValues
-}
-
-input RankSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: RankWhereInput
-  AND: [RankSubscriptionWhereInput!]
-  OR: [RankSubscriptionWhereInput!]
-  NOT: [RankSubscriptionWhereInput!]
-}
-
-input RankUpdateInput {
-  gallery: GalleryUpdateOneRequiredWithoutRankInput
-  rankPosition: Int
-}
-
-input RankUpdateManyDataInput {
-  rankPosition: Int
-}
-
-input RankUpdateManyMutationInput {
-  rankPosition: Int
-}
-
-input RankUpdateManyWithoutGalleryInput {
-  create: [RankCreateWithoutGalleryInput!]
-  delete: [RankWhereUniqueInput!]
-  connect: [RankWhereUniqueInput!]
-  set: [RankWhereUniqueInput!]
-  disconnect: [RankWhereUniqueInput!]
-  update: [RankUpdateWithWhereUniqueWithoutGalleryInput!]
-  upsert: [RankUpsertWithWhereUniqueWithoutGalleryInput!]
-  deleteMany: [RankScalarWhereInput!]
-  updateMany: [RankUpdateManyWithWhereNestedInput!]
-}
-
-input RankUpdateManyWithWhereNestedInput {
-  where: RankScalarWhereInput!
-  data: RankUpdateManyDataInput!
-}
-
-input RankUpdateWithoutGalleryDataInput {
-  rankPosition: Int
-}
-
-input RankUpdateWithWhereUniqueWithoutGalleryInput {
-  where: RankWhereUniqueInput!
-  data: RankUpdateWithoutGalleryDataInput!
-}
-
-input RankUpsertWithWhereUniqueWithoutGalleryInput {
-  where: RankWhereUniqueInput!
-  update: RankUpdateWithoutGalleryDataInput!
-  create: RankCreateWithoutGalleryInput!
-}
-
-input RankWhereInput {
-  rank_id: Int
-  rank_id_not: Int
-  rank_id_in: [Int!]
-  rank_id_not_in: [Int!]
-  rank_id_lt: Int
-  rank_id_lte: Int
-  rank_id_gt: Int
-  rank_id_gte: Int
-  gallery: GalleryWhereInput
-  rankPosition: Int
-  rankPosition_not: Int
-  rankPosition_in: [Int!]
-  rankPosition_not_in: [Int!]
-  rankPosition_lt: Int
-  rankPosition_lte: Int
-  rankPosition_gt: Int
-  rankPosition_gte: Int
-  AND: [RankWhereInput!]
-  OR: [RankWhereInput!]
-  NOT: [RankWhereInput!]
-}
-
-input RankWhereUniqueInput {
-  rank_id: Int
-}
-
 type Subscription {
   customer(where: CustomerSubscriptionWhereInput): CustomerSubscriptionPayload
   gallery(where: GallerySubscriptionWhereInput): GallerySubscriptionPayload
-  rank(where: RankSubscriptionWhereInput): RankSubscriptionPayload
   testimonial(where: TestimonialSubscriptionWhereInput): TestimonialSubscriptionPayload
 }
 

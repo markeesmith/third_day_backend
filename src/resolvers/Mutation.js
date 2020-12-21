@@ -24,15 +24,6 @@ const Mutation = {
 
         return testimonial;
     },
-    async createRank(parent, args, ctx, info) {
-        const rank = await ctx.db.mutation.createRank({
-            data: {
-                ...args
-            }
-        }, info);
-
-        return rank;
-    },
      async createGallery(parent, args, ctx, info) {
          const gallery = await ctx.db.mutation.createGallery({
              data: {

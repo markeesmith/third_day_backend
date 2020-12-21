@@ -9,10 +9,6 @@ const Query = {
         const testimonials = await ctx.db.query.testimonials({}, info);
         return testimonials;
     },
-    async ranks(parent, args, ctx, info) {
-        const ranks = await ctx.db.query.ranks({}, info);
-        return ranks;
-    }
 };
 
 module.exports = Query;

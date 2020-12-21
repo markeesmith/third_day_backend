@@ -14,13 +14,7 @@ type Gallery @db(name: "gallery") {
   galNumberItems: Int! @db(name: "gal_number_items")
   galPath: String! @db(name: "gal_path")
   galType: String! @db(name: "gal_type")
-  rank: [Rank]
-}
-
-type Rank @db(name: "rank") {
-  rank_id: Int! @id(strategy: SEQUENCE) @sequence(name: "rank_rank_id_seq", initialValue: 1, allocationSize: 1)
-  gallery: Gallery! @db(name: "gallery_id")
-  rankPosition: Int! @db(name: "rank_position")
+  galRank: Int! @db(name: "gal_rank")
 }
 
 type Testimonial @db(name: "testimonial") {
