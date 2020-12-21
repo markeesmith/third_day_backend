@@ -13,6 +13,6 @@ type Query {
     customer(where: CustomerWhereUniqueInput!): Customer
     testimonials: [Testimonial]!
     ranks: [Rank]!
-    galleries: [Gallery]!
+    galleries(where: GalleryWhereInput): [Gallery]!
     gallery(where: GalleryWhereUniqueInput!): Gallery
 }
