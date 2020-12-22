@@ -10,7 +10,7 @@ type Mutation {
 type Query {
     customers: [Customer]!
     customer(where: CustomerWhereUniqueInput!): Customer
-    testimonials: [Testimonial]!
-    galleries(where: GalleryWhereInput): [Gallery]!
+    testimonials(orderBy: TestimonialOrderByInput): [Testimonial]!
+    galleries(where: GalleryWhereInput, orderBy: GalleryOrderByInput): [Gallery]!
     gallery(where: GalleryWhereUniqueInput!): Gallery
 }
