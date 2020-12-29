@@ -34,16 +34,22 @@ const Mutation = {
          return gallery;
      },
      async requestContact(parent, { firstName, lastName, email, phone, streetAddress, city, state, zipCode, chkCustom, chkRemodel, chkAddition, budget, description }, ctx, info) {
-      const customer = await ctx.db.mutation.createCustomer({
-        data: {
-          firstName, 
-          lastName, 
-          email,
-          phone,
-          budget, 
-          description,
-        }
-      }, info);
+      let customer = await ctx.db.query.customer({where : {email}});
+
+      if(customer) {
+        throw new Error(`We already have a request from a customer with the email ${email}. Please reach out to us directly or submit a request with a different email.`);
+      } else {
+        customer = await ctx.db.mutation.createCustomer({
+          data: {
+            firstName, 
+            lastName, 
+            email,
+            phone,
+            budget, 
+            description,
+          }
+        }, info);
+      }
 
       const mailResOwner = await transport.sendMail({
         from: process.env.FROM_EMAIL,
