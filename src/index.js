@@ -4,6 +4,7 @@ const db = require('./db');
 
 const server = createServer();
 
+// Start the server
 server.start({
     cors: {
         credentials: true,
