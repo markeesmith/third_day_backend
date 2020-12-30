@@ -1,6 +1,6 @@
 endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.graphql
-secret: dkjflakjsfdljlsajfldsj
+secret: ${env:PRISMA_SECRET}
 
 generate:
   - generator: graphql-schema
