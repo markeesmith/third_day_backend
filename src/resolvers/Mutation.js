@@ -52,7 +52,7 @@ const Mutation = {
       }
 
       const mailResOwner = await transport.sendMail({
-        from: process.env.MAIL_USER,
+        from: process.env.FROM_EMAIL,
         to: process.env.OWNER_EMAIL,
         subject: "NEW WORK REQUEST FROM: " + firstName + " " + lastName,
         html: contactNewWorkEmail({
@@ -73,7 +73,7 @@ const Mutation = {
       });
       
       const mailResDev = await transport.sendMail({
-        from: process.env.MAIL_USER,
+        from: process.env.FROM_EMAIL,
         to: process.env.DEV_EMAIL,
         subject: "NEW WORK REQUEST FROM: " + firstName + " " + lastName,
         html: contactNewWorkEmail({
@@ -94,7 +94,7 @@ const Mutation = {
       });
 
       const mailResCustomer = await transport.sendMail({
-        from: process.env.MAIL_USER,
+        from: process.env.FROM_EMAIL,
         to: email,
         subject: "Third Day Builders Work Request",
         html: contactResponseEmail({
