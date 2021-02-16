@@ -22,3 +22,11 @@ services:
             rawAccess: true
             port: ${PGPORT}
             migrations: false
+  web:
+    build: ./
+    command: npm run dev
+    volumes: 
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "4444:4444"
